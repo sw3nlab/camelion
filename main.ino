@@ -77,69 +77,74 @@ delay(1000);
 }
 
 
-void SendCame4(long Code) {
-for (int j = 0; j < 7; j++) { 
+void SendCame4(long Code) 
+          {
+                    for (int j = 0; j < 7; j++) 
+                    { 
+                              digitalWrite(txPin, HIGH);
+                              delayMicroseconds(320);
+                              digitalWrite(txPin, LOW);
+                                        for (int i = 12; i > 0; i--) 
+                                        {
+                                                  byte b = bitRead(Code, i - 1); 
+                                                  if (b) 
+                                                  {
+                                                            digitalWrite(txPin, LOW); 
+                                                            delayMicroseconds(640);
+                                                            digitalWrite(txPin, HIGH);
+                                                            delayMicroseconds(320);
+                                                  }
+                                                  else 
+                                                  {
+                                                            digitalWrite(txPin, LOW); 
+                                                            delayMicroseconds(320);
+                                                            digitalWrite(txPin, HIGH);
+                                                            delayMicroseconds(640);
+                                                  }
+                                        }
+                              digitalWrite(txPin, LOW);
+                              delayMicroseconds(11520);
+                    }
+          }
 
-digitalWrite(txPin, HIGH);
-delayMicroseconds(320);
-digitalWrite(txPin, LOW);
-for (int i = 12; i > 0; i--) {
-byte b = bitRead(Code, i - 1); 
-if (b) {
-digitalWrite(txPin, LOW); 
-delayMicroseconds(640);
-digitalWrite(txPin, HIGH);
-delayMicroseconds(320);
-}
-else {
-digitalWrite(txPin, LOW); 
-delayMicroseconds(320);
-digitalWrite(txPin, HIGH);
-delayMicroseconds(640);
-}
-}
-digitalWrite(txPin, LOW);
-delayMicroseconds(11520);
-}
-}
 #define MAX_DELTA 200
 boolean CheckValue(unsigned int base, unsigned int value)
-{
-return ((value == base) || ((value > base) && ((value - base) < MAX_DELTA)) || ((value < base) && ((base - value) < MAX_DELTA)));
-}
+          {
+          return ((value == base) || ((value > base) && ((value - base) < MAX_DELTA)) || ((value < base) && ((base - value) < MAX_DELTA)));
+          }
+
 volatile unsigned long prevtime;
 volatile unsigned int lolen, hilen, state;
 volatile static byte cameCounter = 0; 
 volatile static long cameCode = 0;
 
-void grab() {
-state = digitalRead(rxPin);
-if (state == HIGH)
-lolen = micros() - prevtime;
-else
-hilen = micros() - prevtime;
-prevtime = micros();
+void grab() 
+          {
+                    state = digitalRead(rxPin);
+                    if (state == HIGH)
+                              lolen = micros() - prevtime;
+                    else
+                    hilen = micros() - prevtime;
+                    prevtime = micros();
 
-if (state == LOW)
-{
-if (CheckValue(320, hilen) && CheckValue(640, lolen))
-{
-cameCode = (cameCode << 1) | 1;
-cameCounter++;
-}
-else if (CheckValue(640, hilen) && CheckValue(320, lolen))
-{
-cameCode = (cameCode << 1) | 0;
-cameCounter++;
-}
-else cameCounter = 0;
-} else
-if (lolen > 1000 &&
-(cameCounter == 12 || cameCounter == 13) &&
-((cameCode & 0xfff) != 0xfff))
-{
-lastCode = cameCode & 0xfff;
-cameCounter = 0;
-cameCode = 0;
-}
-} 
+                    if (state == LOW)
+                              {
+                                        if (CheckValue(320, hilen) && CheckValue(640, lolen))
+                                                  {
+                                                            cameCode = (cameCode << 1) | 1;
+                                                            cameCounter++;
+                                                  }
+                                        else if (CheckValue(640, hilen) && CheckValue(320, lolen))
+                                                  {
+                                                            cameCode = (cameCode << 1) | 0;
+                                                            cameCounter++;
+                                                  }
+                                        else cameCounter = 0;
+                              } 
+                    else if (lolen > 1000 && (cameCounter == 12 || cameCounter == 13) && ((cameCode & 0xfff) != 0xfff))
+                              {
+                                        lastCode = cameCode & 0xfff;
+                                        cameCounter = 0;
+                                        cameCode = 0;
+                              }
+          } 
