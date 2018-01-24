@@ -6,12 +6,6 @@
 3) Use serial monitor and next command:
 
 Use:
+
 `send 1234`
  where 1234 you gate code.
-
-
---||||--
-
---||||--
---||||--
---||||--
