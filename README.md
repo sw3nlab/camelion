@@ -11,13 +11,22 @@
 
 After power on
 
-Use: `send 1234`
+From serial monitor or Linux console Use next command: 
+>send 1234
 
- where 1234 you gate code.
+where 1234 you gate code.
  
- Use From Linux console:
+For use from the Linux console:
+ - after connecting the controller to the usb port check it:
+ > lsusb
+*QinHeng Electronics HL-340 USB-Serial adapter*
+
+Check new usb device:
+ > ls /dev/ttyUSB*
+ *for example:* /dev/ttyUSB0
  
- 1) connect to controller
+ 
+ 
  screen /dev/ttyUSB 115200
 see text: `dd`
 and detached ctrl+a+d
