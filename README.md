@@ -30,6 +30,7 @@ Check new usb device:
 For connection and autoconfiguration of the controller, you can use the GNU `screen` utility:
 
 >screen /dev/ttyUSB0 115200
+
 If you see a message: `Scan is DEFAULT mode.\nType 'send [code]' to send command.`
 then you did everything correctly and you can scan or send signals.
 detach from `screen session` by CRTL+A+D
