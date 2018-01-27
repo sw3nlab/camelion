@@ -19,19 +19,21 @@ where 1234 you gate code.
 For use from the Linux console:
  - after connecting the controller to the usb port check it:
  > lsusb
+ 
 *QinHeng Electronics HL-340 USB-Serial adapter*
 
 Check new usb device:
  > ls /dev/ttyUSB*
+ 
  *for example:* /dev/ttyUSB0
- 
- 
- 
- screen /dev/ttyUSB 115200
-see text: `dd`
-and detached ctrl+a+d
+
+For connection and autoconfiguration of the controller, you can use the GNU `screen` utility:
+
+>screen /dev/ttyUSB0 115200
+If you see a message: `Scan is DEFAULT mode.\nType 'send [code]' to send command.`
+then you did everything correctly and you can scan or send signals.
+detach from `screen session` by CRTL+A+D
 
 after this you may send commands like this:
 
 > echo "send 1234">/dev/ttyUSB0
-
