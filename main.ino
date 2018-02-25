@@ -1,6 +1,8 @@
 #define txPin 8 
 #define rxPin 2 
-//hello
+
+//not tested on esp8266
+
 void setup()
           {
               pinMode(rxPin, INPUT);
