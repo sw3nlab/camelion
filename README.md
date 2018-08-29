@@ -3,7 +3,7 @@
 
 === Nano v3 (ch340)
 
-![image](https://github.com/sw3nlab/camelion/blob/master/nano.png)
+![image](https://github.com/sw3nlab/camelion/blob/master/howto.jpg)
 
 1) Upload `main.ino` to your arduino controller.
 2) Connect **Digital pin 8** to 433 transmitter  / **pin 2** to receiver.
