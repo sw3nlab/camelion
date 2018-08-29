@@ -1,7 +1,7 @@
 # camelion
 433 mHz Gate signal generator for Arduino
 
-=== Nano v3 (ch340)
+esp8266 and esp32 comming soon ! =)
 
 ![image](https://github.com/sw3nlab/camelion/blob/master/howto.jpg)
 
