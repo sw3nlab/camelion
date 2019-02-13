@@ -38,3 +38,6 @@ detach from `screen session` by CRTL+A+D
 after this you may send commands like this:
 
 > echo "send 1234">/dev/ttyUSB0
+
+
+123123
